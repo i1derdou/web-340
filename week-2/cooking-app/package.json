@@ -1,0 +1,12 @@
+{
+    "name": "recipe-timer",
+    "version": "1.0.0",
+    "description": "A simple recipe and timer program.",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "test": "node tester.js"
+    },
+    "author": "David Clemens",
+    "license": "ISC"
+  }

@@ -1,10 +1,16 @@
 /**
- * Author:
- * Date:
- * File Name:
+ * Author: David Clemens
+ * Date: 2024-06-09
+ * File Name: index.js
  * Description:
 */
 
-// TODO: Import your module using require
+const recipes = require('./recipes');
 
-// TODO: Implement your CLI program here
+const ingredients = ['flour', 'sugar', 'eggs'];
+console.log(recipes.createRecipe(ingredients));
+
+const minutes = 10;
+console.log(recipes.setTimer(minutes));
+
+console.log(recipes.quit());
