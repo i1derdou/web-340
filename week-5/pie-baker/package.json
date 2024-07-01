@@ -1,15 +1,17 @@
 {
-  "name": "pie-baker",
+  "name": "pie-baking",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "description": "A module to simulate pie baking with TDD",
+  "main": "src/pie.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "jest": {
+    "testMatch": ["**/test/**/*.spec.js"]
+  },
+  "author": "David Clemens",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
 }
