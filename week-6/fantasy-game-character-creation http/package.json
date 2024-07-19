@@ -1,0 +1,16 @@
+{
+  "name": "fantasy-game-character-creation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "install": "npm install jest --save-dev",
+    "test": "jest",
+    "start": "node src/server.js"
+  },
+  "author": "David Clemens",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
