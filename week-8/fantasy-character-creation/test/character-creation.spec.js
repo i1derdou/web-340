@@ -1,33 +1,45 @@
-"use strict";
-
-/**
- * This file allows you to choose between using callbacks or promises (async/await) for handling asynchronous operations.
- *
- * If you want to use callbacks:
- * 1. Uncomment the 'fs' require statement under the "For callbacks" comment.
- *
- * If you want to use promises (async/await):
- * 1. Uncomment the 'fs' require statement under the "For promises" comment.
+/*
+ * Author:    David Clemens
+ * Date:      2024-07-21
+ * File Name: character-creation.spec.js
+ * Description: Unit tests using Jest
  */
 
-// For callbacks:
-// const fs = require('fs');
+"use strict";
 
-// For promises:
-// const fs = require('fs').promises;
+const { writeFile, readFile } = require('fs').promises;
+const path = require('path');
+const { createCharacter, saveCharacter, loadCharacter } = require('../src/character-creation');
 
-describe("Character Creation Module", () => {
-  let createCharacter;
-  let getCharacters;
+const fileName = path.join(__dirname, '..', 'src', 'characters.json');
 
-  beforeEach(() => {
-    jest.resetModules();
-    // TODO: Set up your mocks here
-    ({ createCharacter, getCharacters } = require('../src/character-creation'));
+// Mock character data
+const character = {
+  class: 'Warrior',
+  gender: 'Male',
+  special: 'Loves to collect ancient relics'
+};
+
+describe('Character Creation System', () => {
+  beforeAll(async () => {
+    // Clean up before tests
+    await writeFile(fileName, JSON.stringify([]));
   });
 
-  // TODO: Write your tests here. You should have at least three tests:
-  // 1. Test that createCharacter writes a new character to the file
-  // 2. Test that getCharacters reads characters from the file
-  // 3. Test that createCharacter handles errors when writing to the file
+  test('should write character data to a file', async () => {
+    await saveCharacter(character);
+    const data = await readFile(fileName, 'utf8');
+    const characters = JSON.parse(data);
+    expect(characters).toContainEqual(character);
+  });
+
+  test('should read character data from a file', async () => {
+    const characters = await loadCharacter();
+    expect(characters).toContainEqual(character);
+  });
+
+  test('should handle errors when reading from the file', async () => {
+    const invalidFileName = path.join(__dirname, '..', 'src', 'invalid.json');
+    await expect(readFile(invalidFileName, 'utf8')).rejects.toThrow();
+  });
 });
